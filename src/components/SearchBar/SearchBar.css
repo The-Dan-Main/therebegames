@@ -1,0 +1,23 @@
+
+
+.searchbar-container {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin-bottom: 50px;
+    font-family: 'Saira', sans-serif;
+}
+
+#nameSearchInput {
+    width: 60%;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.submit-search {
+    border-radius: 20px;
+}

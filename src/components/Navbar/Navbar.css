@@ -1,0 +1,26 @@
+.navbar-header {
+    font-size: 70px;
+    color: white;
+    margin: 25px;
+}
+
+.navbar-container {
+    top: 0px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+.navbar-container p{
+    font-family: 'Rubik Glitch', cursive;
+}
+.navbar-menu-link {
+    font-size: 25px;
+    margin: 10px;
+}
+
+.navbar-menu {
+    margin: 25px;
+}
