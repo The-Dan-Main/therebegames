@@ -16,8 +16,16 @@
     width: 60%;
     border-radius: 20px;
     padding: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Saira';
 }
 
 .submit-search {
     border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Saira';
 }
