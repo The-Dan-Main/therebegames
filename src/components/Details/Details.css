@@ -1,0 +1,83 @@
+.details-container {
+    height: 1800px;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.screenshot-container {
+    margin-top: 30px;
+    display: flex;
+    box-shadow: 0 0 10px 10px black;
+}
+
+.screenshots {
+    width: 150px;
+    border: solid 2px black;
+    border-radius: 20px;
+}
+
+.screenshots:hover {
+    border: solid white 2px ;
+}
+
+.current-screenshot-image {
+    width: 1000px;
+    box-shadow: 0 0 10px 10px black;
+}
+
+.current-screenshot-container {
+    margin-top: 50px;
+    
+}
+
+.background1-container {
+    height: 700px;
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    width: 100%;
+    box-shadow: 0 0 50px 50px black inset;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    
+}
+
+.background2-container {
+    height: 700px;
+    z-index: -1;
+    position: absolute;
+    top: 200%;
+    width: 100%;
+    box-shadow: 0 0 50px 50px black inset;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.detailed-infos {
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px;
+    color: black;
+}
+
+.description {
+    width: 900px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.back-to-results {
+    background-color: black;
+    color: white;
+    border: solid 2px white;
+    position: absolute;
+    left: 0;
+    border-radius: 15px;
+    padding: 5px;
+    cursor: pointer;
+}

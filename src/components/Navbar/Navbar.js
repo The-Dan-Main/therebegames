@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom';
 import "./Navbar.css"
 
-export default function Navbar () {
+export default function Navbar() {
     return (
         <div className="navbar-container">
-            <p className="navbar-header">There'll <br />be Games...</p>
-            
+            <Link to="/">
+                <p className="navbar-header">There'll <br />be Games... </p>
+            </Link>
+
             <div className="navbar-menu">
                 {/* <div className="menu-wrapper">
 

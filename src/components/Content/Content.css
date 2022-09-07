@@ -4,9 +4,12 @@
     box-sizing: border-box;
 }
 
-
+a {
+    color: white;
+    text-decoration: none;
+}
 .content-container {
-    min-height: 100vh;
+    min-height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,14 +20,21 @@
     left: 0;
     top: 400px;
     display: grid;
-    gap: 20px;
+    gap: 40px;
     grid-template-columns: repeat(20, 300px);
     pointer-events: none;
 }
 
 .game-card {
     width: 320px;  
-    overflow: none; 
+    overflow: hidden; 
+    background-color: rgb(36, 36, 36);
+    border-radius: 20px;
+}
+
+.game-card:hover {
+    box-shadow: 0 0 5px 5px rgb(185, 185, 185);
+    transform: scale(1.1);
 }
 
 .game-image {
@@ -32,10 +42,6 @@
     width: 320px
 }
 
-/* .game-title {
-
+.game-title {
+    pointer-events: all;
 }
-
-.game-release {
-
-} */
