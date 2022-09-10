@@ -7,6 +7,7 @@ import Content from './components/Content/Content';
 import Details from './components/Details/Details';
 
 import './App.css';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [input, setInput] = useState("")
@@ -112,6 +113,7 @@ function App() {
             />
           </Route>
         </Switch>
+        <Footer />
       </div>
     </Router>
   );

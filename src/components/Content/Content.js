@@ -5,25 +5,23 @@ import { useEffect } from 'react';
 export default function Content(props) {
 
 
-    let container = document.querySelector(".content-container")
-    let cards = document.querySelector(".game-cards")
-
-    let isPressedDown = false;
-    let cursorXSpace;
-
-    function boundCards() {
-        const countainer_rect = container.getBoundingClientRect()
-        const cards_rect = cards.getBoundingClientRect()
-        if (cards.offsetLeft > 0) {
-            cards.style.left = 0
-        } else if (cards_rect.right < countainer_rect.right) {
-            cards.style.left = `-${cards_rect.width - countainer_rect.width}px`
-        }
-    }
 
     useEffect(() => {
-        container = document.querySelector(".content-container")
-        cards = document.querySelector(".game-cards")
+        let container = document.querySelector(".content-container")
+        let cards = document.querySelector(".game-cards")
+
+        let isPressedDown = false;
+        let cursorXSpace;
+
+        function boundCards() {
+            const countainer_rect = container.getBoundingClientRect()
+            const cards_rect = cards.getBoundingClientRect()
+            if (cards.offsetLeft > 0) {
+                cards.style.left = 0
+            } else if (cards_rect.right < countainer_rect.right) {
+                cards.style.left = `-${cards_rect.width - countainer_rect.width}px`
+            }
+        }
         cards.style.left = "0px"
 
         if (container !== null) {

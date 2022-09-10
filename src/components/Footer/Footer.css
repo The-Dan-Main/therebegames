@@ -1,0 +1,58 @@
+.Footer-container {
+    height: 100px;
+    width: 105%;
+    background-color: black;
+    position: absolute;
+    bottom: -100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* border-top: 1px solid white; */
+    overflow: hidden;
+    box-shadow: 0 0 20px 10px white;
+}
+
+.footer-title {
+    font-family: 'Rubik Glitch', cursive;
+    font-size: 30px;
+}
+
+.footer-logo {
+    height: 80px;
+}
+
+.footer-links-img {
+    height: 30px;
+    filter: brightness(0.5);
+}
+.footer-links-img:hover {
+    filter: brightness(1)
+}
+
+.links-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+#linked-in {
+    filter: grayscale(100%) brightness(1);
+}
+#linked-in:hover {
+    filter: grayscale(100%) brightness(2);
+}
+
+
+.API-provider {
+    display: flex;
+
+    align-items: center;
+}
+.footer-API-img {
+    height: 100px;
+}
+.API-title {
+    border-right: 1px white solid;
+    padding-right: 10px;
+
+}

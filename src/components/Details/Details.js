@@ -111,7 +111,7 @@ export default function Details(props) {
             <div className="screenshot-container">
                 {props.screenshots?.map((e) => {
                     return (
-                        <img src={e.image} key={e.id} className="screenshots" onMouseEnter={(e)=> mouseOverHandler(e)} />
+                        <img src={e.image} key={e.id} className="screenshots" onMouseEnter={(e)=> mouseOverHandler(e)} alt={e.id}/>
                     )
                 })}
             </div>
