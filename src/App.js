@@ -13,6 +13,7 @@ function App() {
   const [results, setResults] = useState([])
   const [detailed, setDetailed] = useState([])
   const [screenshots, setScreenshots] = useState([])
+  const [isPending, setIsPending] = useState(true)
 
 
   const addInput = (event) => {
@@ -20,6 +21,7 @@ function App() {
   }
 
   const getResults = (id) => {
+    setIsPending(true)
     // console.log("history:",history)
     const searchvalue = input
     const options = {
@@ -36,17 +38,19 @@ function App() {
       setDetailed([])
       fetch(detailedURL, options)
         .then(response => response.json())
-        .then(response =>
+        .then(response =>{
           setDetailed(response)
-        )
+          setIsPending(false)
+        })
         .catch(err => console.error(err));
     } else {
       setResults([])
       fetch(originalURL, options)
         .then(response => response.json())
-        .then(response =>
+        .then(response =>{
           setResults(response.results)
-        )
+          setIsPending(false)
+        })
         .catch(err => console.error(err));
     }
   }
@@ -55,6 +59,7 @@ function App() {
   }
 
   const getDetails = (id) => {
+
     const options = {
       method: 'GET',
       headers: {
@@ -95,10 +100,12 @@ function App() {
               addToDetails={addToDetails}
               getDetails={getDetails}
               setScreenshots={shiftScreenshots}
+              isPending={isPending}
             />
           </Route>
           <Route path="/search/:key">
             <Details
+              isPending={isPending}
               game={detailed}
               data={results}
               screenshots={screenshots}

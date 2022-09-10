@@ -1,11 +1,12 @@
 import './Content.css'
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function Content(props) {
 
 
-    const container = document.querySelector(".content-container")
-    const cards = document.querySelector(".game-cards")
+    let container = document.querySelector(".content-container")
+    let cards = document.querySelector(".game-cards")
 
     let isPressedDown = false;
     let cursorXSpace;
@@ -20,48 +21,44 @@ export default function Content(props) {
         }
     }
 
-    if (container !== null) {
-        container.addEventListener('mousedown', e => {
-            // console.log(e.offsetX)
-            // console.log(cards.offsetLeft)
-            isPressedDown = true;
-            cursorXSpace = e.offsetX - cards.offsetLeft;
-        })
+    useEffect(() => {
+        container = document.querySelector(".content-container")
+        cards = document.querySelector(".game-cards")
+        cards.style.left = "0px"
 
-        container.addEventListener('mousemove', e => {
-            // console.log(cursorXSpace)
-            if (!isPressedDown) return;
-            e.preventDefault();
-            cards.style.left = `${e.offsetX - cursorXSpace}px`
-            boundCards()
-        })
+        if (container !== null) {
+            container.addEventListener('mousedown', e => {
+                isPressedDown = true;
+                cursorXSpace = e.offsetX - cards.offsetLeft;
+            })
+
+            container.addEventListener('mousemove', e => {
+                if (!isPressedDown) return;
+                e.preventDefault();
+                cards.style.left = `${e.offsetX - cursorXSpace}px`
+                boundCards()
+            })
 
 
-        container.addEventListener('wheel', e => {
-            // console.log('scroll on: ', e)
-            // console.log("current position: ", cards.style.left)
-            // console.log("Delta Offset: ", e.deltaY / 10000)
-            // console.log("pos:",typeof parseInt(cards.style.left))
-            // console.log("delta:",typeof e.deltaY)
-            // console.log("new position: ", newPosition)
-            e.preventDefault();
-            const newPosition = parseInt(cards.style.left) + (e.deltaY / 1.5)
-            cards.style.left = `${newPosition}px`
-            boundCards()
-        })
+            container.addEventListener('wheel', e => {
+                e.preventDefault();
+                const newPosition = parseInt(cards.style.left) + (e.deltaY / 1.5)
+                cards.style.left = `${newPosition}px`
+                boundCards()
+            })
 
-    }
-    window.addEventListener('mouseup', () => isPressedDown = false)
+            window.addEventListener('mouseup', () => isPressedDown = false)
+        }
+    }, [])
+
 
     const gameCards = document.querySelector(".game-cards")
     if (gameCards !== null) {
-        // console.log("elements found", gameCards)
         gameCards.style.gridTemplateColumns = `repeat(${props.data.length}, 300px)`
     }
 
     const clickHandlerLink = (element) => {
         props.addToDetails(element)
-        console.log("screenshots added")
         props.setScreenshots(element.short_screenshots)
     }
 
@@ -69,6 +66,7 @@ export default function Content(props) {
     return (
         <div className='content-container'>
             <div className="game-cards">
+                {props.isPending && <div className="loading">Loading...</div>}
                 {props.data.length > 0 && props.data.map(function (element) {
                     return (
                         <div className="game-card" key={element.id}>
