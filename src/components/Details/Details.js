@@ -93,6 +93,7 @@ export default function Details(props) {
 
     return (
         <div className='details-container'>
+            { props.isPending && <div className="loading">Loading...</div> }
             <div className='back-to-results'>
                 <p className="back-text">Back to Results</p>
             </div>
@@ -107,15 +108,15 @@ export default function Details(props) {
             <h3 className="stores detailed-infos">Available in Stores: {stores(props.game.stores)}</h3>
             <h3 className="platforms detailed-infos">Available on Platforms: {platforms(props.game.platforms)}</h3>
             <div className="description detailed-infos"></div>
-            <div className="current-screenshot-container">
-                <img src={props.screenshots[0]?.image} alt="" className='current-screenshot-image' />
-            </div>
             <div className="screenshot-container">
                 {props.screenshots?.map((e) => {
                     return (
-                        <img src={e.image} key={e.id} className="screenshots" onMouseEnter={(e)=> mouseOverHandler(e)} />
+                        <img src={e.image} key={e.id} className="screenshots" onMouseEnter={(e)=> mouseOverHandler(e)} alt={e.id}/>
                     )
                 })}
+            </div>
+            <div className="current-screenshot-container">
+                <img src={props.screenshots[0]?.image} alt="" className='current-screenshot-image' />
             </div>
             <div className="background2-container"></div>
         </div>

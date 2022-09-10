@@ -1,11 +1,12 @@
 .details-container {
-    height: 1800px;
+    height: max-content;
     background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 50px;
 }
 
 .screenshot-container {
@@ -30,7 +31,8 @@
 }
 
 .current-screenshot-container {
-    margin-top: 50px;
+    margin: 50px;
+    height: fit-content;
     
 }
 
@@ -51,7 +53,7 @@
     height: 700px;
     z-index: -1;
     position: absolute;
-    top: 200%;
+    bottom: 50px;
     width: 100%;
     box-shadow: 0 0 50px 50px black inset;
     background-size: 100%;
