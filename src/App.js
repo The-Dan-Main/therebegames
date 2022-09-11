@@ -15,13 +15,15 @@ function App() {
   const [detailed, setDetailed] = useState([])
   const [screenshots, setScreenshots] = useState([])
   const [isPending, setIsPending] = useState(true)
+  const [pageNumber, setPageNumber] = useState(1)
+  const [maxPage, setMaxPage] = useState(1)
 
 
   const addInput = (event) => {
     setInput(event.target.value)
   }
 
-  const getResults = (id) => {
+  const getResults = (id, sortOrder) => {
     setIsPending(true)
     // console.log("history:",history)
     const searchvalue = input
@@ -32,7 +34,7 @@ function App() {
         'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com'
       }
     };
-    const originalURL = `https://rawg-video-games-database.p.rapidapi.com/games?key=9f1a579f9ec54844823bd4d8a7f62e38&search=${searchvalue}&ordering=-released&search_exact=true?exclude_additions=true&page_size=50`
+    const originalURL = `https://rawg-video-games-database.p.rapidapi.com/games?key=9f1a579f9ec54844823bd4d8a7f62e38&search=${searchvalue}&ordering=${sortOrder}&search_exact=true?exclude_additions=true&page_size=20&page=${pageNumber}`
     const detailedURL = `https://rawg-video-games-database.p.rapidapi.com/games/${id}?key=9f1a579f9ec54844823bd4d8a7f62e38&`
     // console.log('id: ', id)
     if (id !== undefined) {
@@ -93,6 +95,10 @@ function App() {
         <SearchBar
           getResults={getResults}
           addInput={addInput}
+          setPageNumber={setPageNumber}
+          results={results}
+          pageNumber={pageNumber}
+
         />
         <Switch>
           <Route exact path="/search">
@@ -104,7 +110,7 @@ function App() {
               isPending={isPending}
             />
           </Route>
-          <Route path="/search/:key">
+          <Route path="/game/:key">
             <Details
               isPending={isPending}
               game={detailed}

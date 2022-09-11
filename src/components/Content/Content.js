@@ -52,7 +52,7 @@ export default function Content(props) {
 
     const gameCards = document.querySelector(".game-cards")
     if (gameCards !== null) {
-        gameCards.style.gridTemplateColumns = `repeat(${props.data.length}, 300px)`
+        gameCards.style.gridTemplateColumns = `repeat(${props.data?.length}, 300px)`
     }
 
     const clickHandlerLink = (element) => {
@@ -64,7 +64,7 @@ export default function Content(props) {
     return (
         <div className='content-container'>
             <div className="game-cards">
-                {props.isPending && <div className="loading">Loading...</div>}
+                {props.isPending && <div class="lds-ripple"><div></div><div></div></div>}
                 {props.data.length > 0 && props.data.map(function (element) {
                     return (
                         <div className="game-card" key={element.id}>
@@ -77,7 +77,7 @@ export default function Content(props) {
                                 className="game-title"
                                 onClick={() => clickHandlerLink(element)}
                             >
-                                <Link to={`/search/${element.id}`} onClick={() => clickHandlerLink(element)}>
+                                <Link to={`/game/${element.id}`} onClick={() => clickHandlerLink(element)}>
                                     {element.name}
                                 </Link>
                             </p>
@@ -85,9 +85,7 @@ export default function Content(props) {
                                 className="game-release"
                                 onClick={() => props.addToDetails(element)}
                             >
-                                <Link to={`/search/${element.id}`}  >
-                                    {element.released !== null ? element.released : "upcoming"}
-                                </Link>
+                                {element.released !== null ? element.released : "upcoming"}
                             </p>
                         </div>
                     )
