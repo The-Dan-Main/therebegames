@@ -21,6 +21,7 @@ function App() {
 
   useEffect(()=> {
     getResults( undefined, "-metacritic")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   const addInput = (event) => {

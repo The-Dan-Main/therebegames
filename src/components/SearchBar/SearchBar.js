@@ -8,7 +8,7 @@ export default function SearchBar(props) {
     useEffect(() => {
         const pagination = document.querySelector(".pagination")
         const orderBy = document.querySelector(".orderBy-container")
-        if (pagination !== null && window.location.href === "http://localhost:3000/search") {
+        if (pagination !== null && window.location.href === "http://localhost:3000/") {
             pagination.style.visibility = "visible"
             orderBy.style.visibility = "visible"
         }
@@ -19,7 +19,7 @@ export default function SearchBar(props) {
             nextP.classList.add("pageNAN")
             previousP.classList.add("pageNAN")
         }
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
     })
 
     const changeURL = (event) => {

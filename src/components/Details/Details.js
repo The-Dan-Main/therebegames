@@ -20,6 +20,7 @@ export default function Details(props) {
             detailsContianer.style.visibility = "visible"
             loader.style.visibility = "hidden"
         }, 500)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const ratingsComment = (ratings) => {
