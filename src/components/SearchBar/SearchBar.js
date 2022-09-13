@@ -24,7 +24,7 @@ export default function SearchBar(props) {
 
     const changeURL = (event) => {
         if (event.key === "Enter") {
-            history.push("/search")
+            history.push("/")
             props.getResults()
         }
     }
