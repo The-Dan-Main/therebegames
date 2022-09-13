@@ -9,9 +9,6 @@ export default function Navbar() {
             </Link>
 
             <div className="navbar-menu">
-                {/* <div className="menu-wrapper">
-
-                </div> */}
                 <p className="navbar-menu-link">by Genre</p>
                 <p className="navbar-menu-link">by Platforms</p>
                 <p className="navbar-menu-link">by Developers</p>

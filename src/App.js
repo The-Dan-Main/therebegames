@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SearchBar from './components/SearchBar/SearchBar';
 import Navbar from './components/Navbar/Navbar';
@@ -16,16 +16,20 @@ function App() {
   const [screenshots, setScreenshots] = useState([])
   const [isPending, setIsPending] = useState(true)
   const [pageNumber, setPageNumber] = useState(1)
-  const [maxPage, setMaxPage] = useState(1)
+  const [pagination, setPagination] = useState([1, 1])
 
+
+  useEffect(()=> {
+    getResults( undefined, "-metacritic")
+  },[])
 
   const addInput = (event) => {
     setInput(event.target.value)
   }
 
-  const getResults = (id, sortOrder) => {
+  const getResults = (id, sortOrder = "name", pageN = pageNumber, genre = "action") => {
     setIsPending(true)
-    // console.log("history:",history)
+    const searchGenre = genre === undefined ? "" : `&genres=${genre}`
     const searchvalue = input
     const options = {
       method: 'GET',
@@ -34,14 +38,13 @@ function App() {
         'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com'
       }
     };
-    const originalURL = `https://rawg-video-games-database.p.rapidapi.com/games?key=9f1a579f9ec54844823bd4d8a7f62e38&search=${searchvalue}&ordering=${sortOrder}&search_exact=true?exclude_additions=true&page_size=20&page=${pageNumber}`
+    const originalURL = `https://rawg-video-games-database.p.rapidapi.com/games?key=9f1a579f9ec54844823bd4d8a7f62e38&search=${searchvalue}&ordering=${sortOrder}&search_exact=true${searchGenre}&exclude_additions=true&page_size=20&page=${pageN}`
     const detailedURL = `https://rawg-video-games-database.p.rapidapi.com/games/${id}?key=9f1a579f9ec54844823bd4d8a7f62e38&`
-    // console.log('id: ', id)
     if (id !== undefined) {
       setDetailed([])
       fetch(detailedURL, options)
         .then(response => response.json())
-        .then(response =>{
+        .then(response => {
           setDetailed(response)
           setIsPending(false)
         })
@@ -50,7 +53,8 @@ function App() {
       setResults([])
       fetch(originalURL, options)
         .then(response => response.json())
-        .then(response =>{
+        .then(response => {
+          setPagination([1, Math.ceil(response.count / 20)])
           setResults(response.results)
           setIsPending(false)
         })
@@ -62,7 +66,7 @@ function App() {
   }
 
   const getDetails = (id) => {
-
+    setIsPending(true)
     const options = {
       method: 'GET',
       headers: {
@@ -72,14 +76,16 @@ function App() {
     };
     const detailedURL = `https://rawg-video-games-database.p.rapidapi.com/games/${id}?key=9f1a579f9ec54844823bd4d8a7f62e38&`
 
-      setDetailed([])
-      fetch(detailedURL, options)
-        .then(response => response.json())
-        .then(response =>
-          setDetailed(response)
-        )
-        .catch(err => console.error(err));
-    
+    setDetailed([])
+    fetch(detailedURL, options)
+      .then(response => response.json())
+      .then(response => {
+        setDetailed(response)
+        setIsPending(false)
+      }
+      )
+      .catch(err => console.error(err));
+
   }
 
   const shiftScreenshots = (data) => {
@@ -87,10 +93,10 @@ function App() {
     setScreenshots(data)
   }
 
+
   return (
     <Router>
-      <div className="App"
-        onScroll={(e) => console.log('scroll detected')}>
+      <div className="App">
         <Navbar />
         <SearchBar
           getResults={getResults}
@@ -98,10 +104,11 @@ function App() {
           setPageNumber={setPageNumber}
           results={results}
           pageNumber={pageNumber}
+          pagination={pagination}
 
         />
         <Switch>
-          <Route exact path="/search">
+          <Route exact path="/">
             <Content
               data={results}
               addToDetails={addToDetails}

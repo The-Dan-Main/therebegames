@@ -4,12 +4,10 @@ import { useEffect } from 'react';
 
 export default function Content(props) {
 
-
-
     useEffect(() => {
         let container = document.querySelector(".content-container")
         let cards = document.querySelector(".game-cards")
-
+        cards.style.left = "15px"
         let isPressedDown = false;
         let cursorXSpace;
 
@@ -17,12 +15,11 @@ export default function Content(props) {
             const countainer_rect = container.getBoundingClientRect()
             const cards_rect = cards.getBoundingClientRect()
             if (cards.offsetLeft > 0) {
-                cards.style.left = 0
+                cards.style.left = "15px"
             } else if (cards_rect.right < countainer_rect.right) {
                 cards.style.left = `-${cards_rect.width - countainer_rect.width}px`
             }
         }
-        cards.style.left = "0px"
 
         if (container !== null) {
             container.addEventListener('mousedown', e => {
@@ -37,14 +34,12 @@ export default function Content(props) {
                 boundCards()
             })
 
-
             container.addEventListener('wheel', e => {
                 e.preventDefault();
                 const newPosition = parseInt(cards.style.left) + (e.deltaY / 1.5)
                 cards.style.left = `${newPosition}px`
                 boundCards()
             })
-
             window.addEventListener('mouseup', () => isPressedDown = false)
         }
     }, [])
@@ -64,8 +59,8 @@ export default function Content(props) {
     return (
         <div className='content-container'>
             <div className="game-cards">
-                {props.isPending && <div class="lds-ripple"><div></div><div></div></div>}
-                {props.data.length > 0 && props.data.map(function (element) {
+                {props.isPending && <div className="lds-ripple2"><div></div><div></div></div>}
+                {props.data?.length > 0 && props.data.map(function (element) {
                     return (
                         <div className="game-card" key={element.id}>
                             <img
