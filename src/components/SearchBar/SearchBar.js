@@ -81,7 +81,7 @@ export default function SearchBar(props) {
                     />
                     <div className="enterPress">Enter</div>
                 </div>
-                <Link to="/search">
+                <Link to="/">
                     <button className="submit-search" onClick={() => props.getResults()}>Click to start Search</button>
                 </Link>
             </div>
