@@ -4,12 +4,10 @@ import { useEffect } from 'react';
 
 export default function Content(props) {
 
-
-
     useEffect(() => {
         let container = document.querySelector(".content-container")
         let cards = document.querySelector(".game-cards")
-
+        cards.style.left = "15px"
         let isPressedDown = false;
         let cursorXSpace;
 
@@ -17,12 +15,11 @@ export default function Content(props) {
             const countainer_rect = container.getBoundingClientRect()
             const cards_rect = cards.getBoundingClientRect()
             if (cards.offsetLeft > 0) {
-                cards.style.left = 0
+                cards.style.left = "15px"
             } else if (cards_rect.right < countainer_rect.right) {
                 cards.style.left = `-${cards_rect.width - countainer_rect.width}px`
             }
         }
-        cards.style.left = "0px"
 
         if (container !== null) {
             container.addEventListener('mousedown', e => {
@@ -37,14 +34,12 @@ export default function Content(props) {
                 boundCards()
             })
 
-
             container.addEventListener('wheel', e => {
                 e.preventDefault();
                 const newPosition = parseInt(cards.style.left) + (e.deltaY / 1.5)
                 cards.style.left = `${newPosition}px`
                 boundCards()
             })
-
             window.addEventListener('mouseup', () => isPressedDown = false)
         }
     }, [])
@@ -52,7 +47,7 @@ export default function Content(props) {
 
     const gameCards = document.querySelector(".game-cards")
     if (gameCards !== null) {
-        gameCards.style.gridTemplateColumns = `repeat(${props.data.length}, 300px)`
+        gameCards.style.gridTemplateColumns = `repeat(${props.data?.length}, 300px)`
     }
 
     const clickHandlerLink = (element) => {
@@ -64,8 +59,8 @@ export default function Content(props) {
     return (
         <div className='content-container'>
             <div className="game-cards">
-                {props.isPending && <div className="loading">Loading...</div>}
-                {props.data.length > 0 && props.data.map(function (element) {
+                {props.isPending && <div className="lds-ripple2"><div></div><div></div></div>}
+                {props.data?.length > 0 && props.data.map(function (element) {
                     return (
                         <div className="game-card" key={element.id}>
                             <img
@@ -77,7 +72,7 @@ export default function Content(props) {
                                 className="game-title"
                                 onClick={() => clickHandlerLink(element)}
                             >
-                                <Link to={`/search/${element.id}`} onClick={() => clickHandlerLink(element)}>
+                                <Link to={`/game/${element.id}`} onClick={() => clickHandlerLink(element)}>
                                     {element.name}
                                 </Link>
                             </p>
@@ -85,9 +80,7 @@ export default function Content(props) {
                                 className="game-release"
                                 onClick={() => props.addToDetails(element)}
                             >
-                                <Link to={`/search/${element.id}`}  >
-                                    {element.released !== null ? element.released : "upcoming"}
-                                </Link>
+                                {element.released !== null ? element.released : "upcoming"}
                             </p>
                         </div>
                     )

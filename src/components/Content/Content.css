@@ -13,12 +13,15 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 15px;
+    width: 97%;
+    overflow: hidden;
+    position: relative;
 }
 
 .game-cards {
     position: absolute;
     left: 0;
-    top: 400px;
     display: grid;
     gap: 40px;
     grid-template-columns: repeat(20, 300px);
@@ -45,3 +48,60 @@ a {
 .game-title {
     pointer-events: all;
 }
+
+.lds-ripple2 {
+    display: inline-block;
+    position: relative;
+    left: 800px;
+    top: 180px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .lds-ripple2 p {
+    position: relative;
+    bottom: 100px;
+    
+  }
+
+  .lds-ripple2 div {
+    position: absolute;
+    border: 4px solid #fff;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple2 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+  .lds-ripple2 div:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+  @keyframes lds-ripple2 {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    4.9% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    5% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+  }
+  

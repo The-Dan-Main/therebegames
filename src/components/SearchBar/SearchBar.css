@@ -1,19 +1,17 @@
-
-
 .searchbar-container {
     display: flex;
     gap: 20px;
-    align-items: stretch;
+    align-items: center;
     justify-content: center;
     align-content: center;
     flex-wrap: nowrap;
     flex-direction: row;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
     font-family: 'Saira', sans-serif;
 }
 
 #nameSearchInput {
-    width: 60%;
+    width: 100%;
     border-radius: 20px;
     padding: 15px;
     font-size: 15px;
@@ -23,9 +21,105 @@
 
 .submit-search {
     border-radius: 20px;
-    height: 100%;
+    height: 55px;
     width: 100%;
     font-size: 20px;
     font-weight: bold;
     font-family: 'Saira';
+}
+
+#arrow1 {
+    filter: invert(80%);
+    border-radius: 25px;
+    height: 30px;
+}
+
+#arrow1:hover {
+    box-shadow: 0 0 5px 5px black;
+}
+
+.upsidedown {
+    transform: rotate(180deg);
+}
+
+.orderBy-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: rgb(31, 31, 31);
+    padding: 5px;
+    border-radius: 15px;
+    width: 20%;
+    justify-content: space-evenly;
+}
+
+.orderBy-title {
+    margin: 0;
+    width: 60px;
+    display: contents;
+}
+
+.selection {
+    display: flex;
+    width: 66%;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.orderBy-container select {
+    padding: 5px;
+    font-size: 15px;
+    background-color: rgb(31, 31, 31);
+    color: white;
+    font-family: 'Saira', sans-serif;
+    border: none;
+    height: 40px;
+    width: 120px;
+    border: solid rgb(31, 31, 31) 1px ;
+    border-radius: 15px;
+}
+
+.orderBy-container select:hover {
+    border: solid white 1px ;
+}
+
+.pagination {
+    display: flex;
+    gap: 30px;
+    text-decoration: underline;
+    justify-content: center;
+}
+
+
+.pagination p.previousPage,p.nextPage {
+    cursor: pointer;
+}
+.pageNAN {
+    cursor: auto;
+    text-decoration: line-through;
+    color: rgb(150, 150, 150);
+    text-decoration-color: rgb(150, 150, 150);
+}
+
+.currentPage {
+    box-shadow: 0 0 2px 2px white;
+    padding: 0 10px 0 10px;
+    border-radius: 15px;
+}
+
+.searchInput {
+    position: relative;
+    width: 50%;
+    margin-right: 30px;
+}
+
+.enterPress {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: black;
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 5px;
 }
